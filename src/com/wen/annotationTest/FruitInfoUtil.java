@@ -1,5 +1,6 @@
 package com.wen.annotationTest;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 
 /**
@@ -12,24 +13,17 @@ public class FruitInfoUtil {
         String strFruitColor=" 水果颜色：";
         String strFruitProvicer="供应商信息：";
         
-        Field[] fields = clazz.getDeclaredFields();
+        Annotation[] fields = clazz.getDeclaredAnnotations();
+        System.out.println(fields.length);
         
-        for(Field field :fields){
-            if(field.isAnnotationPresent(FruitName.class)){
-                FruitName fruitName = (FruitName) field.getAnnotation(FruitName.class);
-                strFruitName=strFruitName+fruitName.value();
-                System.out.println(strFruitName);
-            }
-            else if(field.isAnnotationPresent(FruitColor.class)){
-                FruitColor fruitColor= (FruitColor) field.getAnnotation(FruitColor.class);
-                strFruitColor=strFruitColor+fruitColor.fruitColor().toString();
-                System.out.println(strFruitColor);
-            }
-            else if(field.isAnnotationPresent(FruitProvider.class)){
-                FruitProvider fruitProvider= (FruitProvider) field.getAnnotation(FruitProvider.class);
-                strFruitProvicer=" 供应商编号："+fruitProvider.id()+" 供应商名称："+fruitProvider.name()+" 供应商地址："+fruitProvider.address();
-                System.out.println(strFruitProvicer);
-            }
+        for(Annotation field :fields){
+        	System.out.println(field.annotationType() == FruitName.class);
+        	if (field.annotationType() == FruitName.class) {
+        		strFruitName=strFruitName + ((FruitName)field).value();
+        		System.out.println(strFruitName);
+        	}
+            
         }
+        
     }
 }

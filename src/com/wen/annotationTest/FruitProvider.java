@@ -3,17 +3,17 @@ package com.wen.annotationTest;
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
-import static java.lang.annotation.ElementType.FIELD;
+import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 
 /**
  * 水果供应者注解
  */
-@Target(FIELD)
+@Target(TYPE) 
 @Retention(RUNTIME)
 @Documented
-public @interface FruitProvider {
+public @interface FruitProvider { // 定义的 这个 annotation 里面有三个 variable
     /**
      * 供应商编号
      */
